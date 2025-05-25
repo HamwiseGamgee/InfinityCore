@@ -45,7 +45,134 @@
                     "value": 7,
                     "selected":false
                 }
+            },
+            "infinitypoints" {
+                        "value": 3,
+                        "max": 3
+            },
+            "skill": {
+        "acrobatics": {
+          "label": "infinitycore.actor.character.skill.acrobatics",
+          "value": 0,
+          "selected": true
+        },
+        "analysis": {
+          "label": "infinitycore.actor.character.skill.analysis",
+          "value": 0,
+          "selected": false
+        },
+        "animalhandling": {
+          "label": "infinitycore.actor.character.skill.animalhandling",
+          "value": 0,
+          "selected": false
+        },
+        "athletics": {
+          "label": "infinitycore.actor.character.skill.athletics",
+          "value": 0,
+          "selected": false
+        },
+        "ballistics": {
+          "label": "infinitycore.actor.character.skill.ballistics",
+          "value": 0,
+          "selected": false
+        },
+        "closecombat": {
+          "label": "infinitycore.actor.character.skill.closecombat",
+          "value": 0,
+          "selected": false
+        },
+        "command": {
+          "label": "infinitycore.actor.character.skill.command",
+          "value": 0,
+          "selected": false
+        },
+        "discipline": {
+          "label": "infinitycore.actor.character.skill.discipline",
+          "value": 0,
+          "selected": false
+        },
+        "education": {
+          "label": "infinitycore.actor.character.skill.education",
+          "value": 0,
+          "selected": false
+        },
+        "extraplanetary": {
+          "label": "infinitycore.actor.character.skill.extraplanetary",
+          "value": 0,
+          "selected": false
+        },
+        "hacking": {
+          "label": "infinitycore.actor.character.skill.hacking",
+          "value": 0,
+          "selected": false
+        },
+        "lifestyle": {
+          "label": "infinitycore.actor.character.skill.lifestyle",
+          "value": 0,
+          "selected": false
+        },
+        "medicine": {
+          "label": "infinitycore.actor.character.skill.medicine",
+          "value": 0,
+          "selected": false
+        },
+        "observation": {
+          "label": "infinitycore.actor.character.skill.observation",
+          "value": 0,
+          "selected": false
+        },
+        "persuade": {
+          "label": "infinitycore.actor.character.skill.persuade",
+          "value": 0,
+          "selected": false
+        },
+        "pilot": {
+          "label": "infinitycore.actor.character.skill.pilot",
+          "value": 0,
+          "selected": false
+        },
+        "psychology": {
+          "label": "infinitycore.actor.character.skill.psychology",
+          "value": 0,
+          "selected": false
+        },
+        "resistance": {
+          "label": "infinitycore.actor.character.skill.resistance",
+          "value": 0,
+          "selected": false
+        },
+        "science": {
+          "label": "infinitycore.actor.character.skill.science",
+          "value": 0,
+          "selected": false
+        },
+        "spacecraft": {
+          "label": "infinitycore.actor.character.skill.spacecraft",
+          "value": 0,
+          "selected": false
+        },
+        "stealth": {
+          "label": "infinitycore.actor.character.skill.stealth",
+          "value": 0,
+          "selected": false
+        },
+        "survival": {
+          "label": "infinitycore.actor.character.skill.survival",
+          "value": 0,
+          "selected": false
+        },
+        "tech": {
+          "label": "infinitycore.actor.character.skill.tech",
+          "value": 0,
+          "selected": false
+        },
+        "theivery": {
+          "label": "infinitycore.actor.character.skill.theivery",
+          "value": 0,
+          "selected": false
+        }
             }
+
 
         }
     },
