@@ -1,5 +1,116 @@
 {
-    "Actor": {},
-    "Item": {}
+    "Actor": {
+        "types": ["character", "geist", "vehicle"],
+        "templates": {
+            "common": {
+                "notes": ""
+            }
+        },
+        "character": {
+            "templates": ["common"],
+            "faction": "",
+            "attributes": {
+                "agility": {
+                    "label": "infinitycore.actor.character.attribute.agility",
+                    "value": 7,
+                    "selected": true
+                },
+                "awarenes": {
+                    "label": "infinitycore.actor.character.attribute.awarenes",
+                    "value": 7,
+                    "selected":false
+                },
+                "brawn": {
+                    "label": "infinitycore.actor.character.attribute.brawn",
+                    "value": 7,
+                    "selected":false
+                },
+                "coordination": {
+                    "label": "infinitycore.actor.character.attribute.coordination",
+                    "value": 7,
+                    "selected":false
+                },
+                "intelligence": {
+                    "label": "infinitycore.actor.character.attribute.intelligence",
+                    "value": 7,
+                    "selected":false
+                },
+                "personality": {
+                    "label": "infinitycore.actor.character.attribute.personality",
+                    "value": 7,
+                    "selected": false
+                },
+                "willpower": {
+                    "label": "infinitycore.actor.character.attribute.willpower",
+                    "value": 7,
+                    "selected":false
+                }
+            }
+
+        }
+    },
+    "Item": {
+        "types": ["weapon"],
+        "templates": {
+            "common":{
+                "description": ""
+            }
+        },
+        "weapon": {
+            "attackWith": "ballistics",
+            "damage": 0,
+            "size": 0,
+            "restriction": 0,
+            "cost": 0,
+            "tariff": 0,
+            "qualities": {
+        "area": false,
+        "aug": false,
+        "comms": false,
+        "disposable": false,
+        "fragile": false,
+        "nfb": false,
+        "neural": false,
+        "nonhackable": false,
+        "biotech": false,
+        "blinding": false,
+        "breacheffect": false,
+        "breaker": false,
+        "deafening": false,
+        "e/m": false,
+        "extendedreach": false,
+        "frangible": false,
+        "grievous": false,
+        "guided": false,
+        "immobilising": false,
+        "indiscriminate": false,
+        "knockdown": false,
+        "monofilament": false,
+        "multi": false,
+        "nanotech": false,
+        "speculativefire": false,
+        "stun": false,
+        "thrown": false,
+        "improvised": 0,
+        "subtle": 0,
+        "unsubtle": 0,
+        "antimateriel": 0,
+        "backlash": 0,
+        "incendiary": 0,
+        "parry": 0,
+        "piercing": 0,
+        "radiation": 0,
+        "reflective": 0,
+        "smoke": 0,
+        "spread": 0,
+        "terrifying": 0,
+        "toxic": 0,
+        "unforgiving": 0,
+        "vicious": 0
+
+            }
+
+        }
+    }
     
 }
