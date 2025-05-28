@@ -1,243 +1,291 @@
 {
-    "Actor": {
-        "types": ["character", "geist", "vehicle"],
-        "templates": {
-            "common": {
-                "notes": ""
-            }
-        },
-        "character": {
-            "templates": ["common"],
-            "faction": "",
-            "attributes": {
-                "agility": {
-                    "label": "infinitycore.actor.character.attribute.agility",
-                    "value": 7,
-                    "selected": true
-                },
-                "awarenes": {
-                    "label": "infinitycore.actor.character.attribute.awarenes",
-                    "value": 7,
-                    "selected":false
-                },
-                "brawn": {
-                    "label": "infinitycore.actor.character.attribute.brawn",
-                    "value": 7,
-                    "selected":false
-                },
-                "coordination": {
-                    "label": "infinitycore.actor.character.attribute.coordination",
-                    "value": 7,
-                    "selected":false
-                },
-                "intelligence": {
-                    "label": "infinitycore.actor.character.attribute.intelligence",
-                    "value": 7,
-                    "selected":false
-                },
-                "personality": {
-                    "label": "infinitycore.actor.character.attribute.personality",
-                    "value": 7,
-                    "selected": false
-                },
-                "willpower": {
-                    "label": "infinitycore.actor.character.attribute.willpower",
-                    "value": 7,
-                    "selected":false
-                }
-            },
-            "infinitypoints" {
-                        "value": 3,
-                        "max": 3
-            },
-            "skill": {
-        "acrobatics": {
-          "label": "infinitycore.actor.character.skill.acrobatics",
-          "value": 0,
-          "selected": true
-        },
-        "analysis": {
-          "label": "infinitycore.actor.character.skill.analysis",
-          "value": 0,
-          "selected": false
-        },
-        "animalhandling": {
-          "label": "infinitycore.actor.character.skill.animalhandling",
-          "value": 0,
-          "selected": false
-        },
-        "athletics": {
-          "label": "infinitycore.actor.character.skill.athletics",
-          "value": 0,
-          "selected": false
-        },
-        "ballistics": {
-          "label": "infinitycore.actor.character.skill.ballistics",
-          "value": 0,
-          "selected": false
-        },
-        "closecombat": {
-          "label": "infinitycore.actor.character.skill.closecombat",
-          "value": 0,
-          "selected": false
-        },
-        "command": {
-          "label": "infinitycore.actor.character.skill.command",
-          "value": 0,
-          "selected": false
-        },
-        "discipline": {
-          "label": "infinitycore.actor.character.skill.discipline",
-          "value": 0,
-          "selected": false
-        },
-        "education": {
-          "label": "infinitycore.actor.character.skill.education",
-          "value": 0,
-          "selected": false
-        },
-        "extraplanetary": {
-          "label": "infinitycore.actor.character.skill.extraplanetary",
-          "value": 0,
-          "selected": false
-        },
-        "hacking": {
-          "label": "infinitycore.actor.character.skill.hacking",
-          "value": 0,
-          "selected": false
-        },
-        "lifestyle": {
-          "label": "infinitycore.actor.character.skill.lifestyle",
-          "value": 0,
-          "selected": false
-        },
-        "medicine": {
-          "label": "infinitycore.actor.character.skill.medicine",
-          "value": 0,
-          "selected": false
-        },
-        "observation": {
-          "label": "infinitycore.actor.character.skill.observation",
-          "value": 0,
-          "selected": false
-        },
-        "persuade": {
-          "label": "infinitycore.actor.character.skill.persuade",
-          "value": 0,
-          "selected": false
-        },
-        "pilot": {
-          "label": "infinitycore.actor.character.skill.pilot",
-          "value": 0,
-          "selected": false
-        },
-        "psychology": {
-          "label": "infinitycore.actor.character.skill.psychology",
-          "value": 0,
-          "selected": false
-        },
-        "resistance": {
-          "label": "infinitycore.actor.character.skill.resistance",
-          "value": 0,
-          "selected": false
-        },
-        "science": {
-          "label": "infinitycore.actor.character.skill.science",
-          "value": 0,
-          "selected": false
-        },
-        "spacecraft": {
-          "label": "infinitycore.actor.character.skill.spacecraft",
-          "value": 0,
-          "selected": false
-        },
-        "stealth": {
-          "label": "infinitycore.actor.character.skill.stealth",
-          "value": 0,
-          "selected": false
-        },
-        "survival": {
-          "label": "infinitycore.actor.character.skill.survival",
-          "value": 0,
-          "selected": false
-        },
-        "tech": {
-          "label": "infinitycore.actor.character.skill.tech",
-          "value": 0,
-          "selected": false
-        },
-        "theivery": {
-          "label": "infinitycore.actor.character.skill.theivery",
-          "value": 0,
-          "selected": false
-        }
-            }
+  "Actor": {
+    "types": [ "character", "geist", "npc" ],
+    "templates": {
+      "common": {
+        "notes": ""
+      },
+      "actorcommon": {
+        "name": "",
+        "attributes": {
+          "agility": {
+            "value": 7,
+            "selected": true
+          },
+          "awareness": {
+            "value": 7,
+            "selected": false
+          },
+          "brawn": {
+            "value": 7,
+            "selected": false
+          },
+          "coordination": {
+            "value": 7,
+            "selected": false
+          },
+          "intelligence": {
+            "value": 7,
+            "selected": false
+          },
+          "personality": {
+            "value": 7,
+            "selected": false
+          },
+          "willpower": {
+            "value": 7,
+            "selected": false
+          }
 
+        },
+        "vigour": {
+          "value": 0,
+          "max": 0
+        },
+        "resolve": {
+          "value": 0,
+          "max": 0
+        },
+        "firewall": {
+          "value": 0,
+          "max": 0
+        },
 
-        }
+        "skill": {
+          "acrobatics": {
+            "value": 0,
+            "selected": true,
+            "focus": 0,
+            "complication": 0
+          },
+          "analysis": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "animalhandling": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "athletics": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "ballistics": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "closecombat": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "command": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "discipline": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "education": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "extraplanetary": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "hacking": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "lifestyle": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "medicine": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "observation": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "persuade": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "pilot": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "psychology": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "resistance": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "science": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "spacecraft": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "stealth": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "survival": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "tech": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "theivery": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          }
+        },
+
+        "armor": 0,
+        "morale": 0,
+        "security": 0
+
+      },
+
+      "itemcommon": {
+        "notes": ""
+      }
+
     },
-    "Item": {
-        "types": ["weapon"],
-        "templates": {
-            "common":{
-                "description": ""
-            }
-        },
-        "weapon": {
-            "attackWith": "ballistics",
-            "damage": 0,
-            "size": 0,
-            "restriction": 0,
-            "cost": 0,
-            "tariff": 0,
-            "qualities": {
-        "area": false,
-        "aug": false,
-        "comms": false,
-        "disposable": false,
-        "fragile": false,
-        "nfb": false,
-        "neural": false,
-        "nonhackable": false,
-        "biotech": false,
-        "blinding": false,
-        "breacheffect": false,
-        "breaker": false,
-        "deafening": false,
-        "e/m": false,
-        "extendedreach": false,
-        "frangible": false,
-        "grievous": false,
-        "guided": false,
-        "immobilising": false,
-        "indiscriminate": false,
-        "knockdown": false,
-        "monofilament": false,
-        "multi": false,
-        "nanotech": false,
-        "speculativefire": false,
-        "stun": false,
-        "thrown": false,
-        "improvised": 0,
-        "subtle": 0,
-        "unsubtle": 0,
-        "antimateriel": 0,
-        "backlash": 0,
-        "incendiary": 0,
-        "parry": 0,
-        "piercing": 0,
-        "radiation": 0,
-        "reflective": 0,
-        "smoke": 0,
-        "spread": 0,
-        "terrifying": 0,
-        "toxic": 0,
-        "unforgiving": 0,
-        "vicious": 0
+    "character": {
+      "templates": [ "actorcommon" ],
+      "faction": "",
+      "infinitypoints": {
+        "value": 3,
+        "max": 3
+      }
 
-            }
+
+
+    },
+
+
+    "Item": {
+      "types": [ "weapon" ],
+      "templates": {
+        "itemcommon": {
+          "description": ""
+        }
+      },
+      "weapon": {
+        "attackWith": "ballistics",
+        "damage": 0,
+        "size": 0,
+        "restriction": 0,
+        "cost": 0,
+        "tariff": 0,
+        "description": "",
+        "qualities": {
+          "area": false,
+          "aug": false,
+          "comms": false,
+          "disposable": false,
+          "fragile": false,
+          "nfb": false,
+          "neural": false,
+          "nonhackable": false,
+          "biotech": false,
+          "blinding": false,
+          "breacheffect": false,
+          "breaker": false,
+          "deafening": false,
+          "e/m": false,
+          "extendedreach": false,
+          "frangible": false,
+          "grievous": false,
+          "guided": false,
+          "immobilising": false,
+          "indiscriminate": false,
+          "knockdown": false,
+          "monofilament": false,
+          "multi": false,
+          "nanotech": false,
+          "speculativefire": false,
+          "stun": false,
+          "thrown": false,
+          "improvised": 0,
+          "subtle": 0,
+          "unsubtle": 0,
+          "antimateriel": 0,
+          "backlash": 0,
+          "incendiary": 0,
+          "parry": 0,
+          "piercing": 0,
+          "radiation": 0,
+          "reflective": 0,
+          "smoke": 0,
+          "spread": 0,
+          "terrifying": 0,
+          "toxic": 0,
+          "unforgiving": 0,
+          "vicious": 0
 
         }
+
+      }
     }
-    
+
+  }
 }

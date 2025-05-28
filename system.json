@@ -1,19 +1,21 @@
 {
+  "id": "infinitycore",
+  "name": "infinitycore",
+  "title": "Infinity the Roleplaying Game",
+  "description": "A broken system that doesn't work.",
+  "author": "Hamwise Gamgee, Fattest of the Hobbits",
+  "version": "0.01",
+  "minimumCoreVersion": "13.343",
+  "compatibleCoreVersion": "13.343",
+  "esmodules": [
+    "infinitycore.js"
+  ],
+  "styles": ["infinitycore.css"],
+  "grid.distance": 5,
+  "grid.units": "ft",
+  "primaryTokenAttribute": "vigour",
+  "system": {
     "name": "infinitycore",
-    "title": "Infinity the Roleplaying Game",
-    "description": "A broken system that doesn't work.",
-    "author": "Hamwise Gamgee, Fattest of the Hobbits",
-    "version": 0.01,
-    "minimumCoreVersion": "13.343",
-    "compatibleCoreVersion": "13.343",
-    "esmodules":[
-        "irpg.js"
-    ],
-    "styles":[
-        "irpg.css"
-    ],
-"gridDistance": 5,
-"gridUnits": "ft",
-"primaryTokenAttribute": "vigour"
-
+    "version": "0.01"
+  }
 }

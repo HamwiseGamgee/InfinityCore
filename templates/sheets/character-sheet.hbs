@@ -1,0 +1,173 @@
+<form class="actor-sheet" autocomplete="off">
+    <header class="sheet-header flexrow">
+        <img class="actor-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <div class="header-details flexcol">
+            <h1 class="actor-name">
+                <input name="name" type="text" value="{{actor.name}}" placeholder="Character Name" />
+            </h1>
+            <div class="actor-type">{{actor.type}}</div>
+            <label>Faction</label>
+            <input name="system.faction" type="text" value="{{actor.system.faction}}" />
+        </div>
+    </header>
+
+    <section class="sheet-body">
+        <h2>Infinity Points</h2>
+        <div class="grid-2col">
+            <div>
+                <label>Current</label>
+                <input name="system.infinitypoints.value" type="number" value="{{actor.system.infinitypoints.value}}" />
+            </div>
+            <div>
+                <label>Max</label>
+                <input name="system.infinitypoints.max" type="number" value="{{actor.system.infinitypoints.max}}" />
+            </div>
+        </div>
+
+        <section class="sheet-section skills-by-attribute">
+            <h2>Skills</h2>
+
+            {{!-- Define skills grouped by attribute --}}
+            {{~#with actor.system.skill as |skills|~}}
+
+            {{!-- Agility --}}
+            <div class="attribute-skill-group">
+                <h3>Agility</h3>
+                <div class="skill-grid">
+                    {{#each (pick skills "acrobatics" "closecombat" "stealth") as |skill key|}}
+                    <div class="skill-entry">
+                        <label>{{key}}</label>
+                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
+                        <span>F:</span>
+                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            {{!-- Awareness --}}
+            <div class="attribute-skill-group">
+                <h3>Awareness</h3>
+                <div class="skill-grid">
+                    {{#each (pick skills "analysis" "extraplanetary" "observation" "survival" "theivery") as |skill key|}}
+                    <div class="skill-entry">
+                        <label>{{key}}</label>
+                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
+                        <span>F:</span>
+                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            {{!-- Repeat this pattern for all other attributes --}}
+            <div class="attribute-skill-group">
+                <h3>Brawn</h3>
+                <div class="skill-grid">
+                    {{#each (pick skills "athletics" "resistance") as |skill key|}}
+                    <div class="skill-entry">
+                        <label>{{key}}</label>
+                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
+                        <span>F:</span>
+                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="attribute-skill-group">
+                <h3>Coordination</h3>
+                <div class="skill-grid">
+                    {{#each (pick skills "ballistics" "pilot" "spacecraft") as |skill key|}}
+                    <div class="skill-entry">
+                        <label>{{key}}</label>
+                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
+                        <span>F:</span>
+                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="attribute-skill-group">
+                <h3>Intelligence</h3>
+                <div class="skill-grid">
+                    {{#each (pick skills "education" "hacking" "medicine" "psychology" "science" "tech") as |skill key|}}
+                    <div class="skill-entry">
+                        <label>{{key}}</label>
+                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
+                        <span>F:</span>
+                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="attribute-skill-group">
+                <h3>Personality</h3>
+                <div class="skill-grid">
+                    {{#each (pick skills "animalhandling" "command" "lifestyle" "persuade") as |skill key|}}
+                    <div class="skill-entry">
+                        <label>{{key}}</label>
+                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
+                        <span>F:</span>
+                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="attribute-skill-group">
+                <h3>Willpower</h3>
+                <div class="skill-grid">
+                    {{#each (pick skills "discipline") as |skill key|}}
+                    <div class="skill-entry">
+                        <label>{{key}}</label>
+                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
+                        <span>F:</span>
+                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            {{~/with}}
+        </section>
+
+
+        <h2>Vitals</h2>
+        <div class="grid-3col">
+            <div>
+                <label>Vigour</label>
+                <input type="number" name="system.vigour.value" value="{{actor.system.vigour.value}}" />
+                <input type="number" name="system.vigour.max" value="{{actor.system.vigour.max}}" />
+            </div>
+            <div>
+                <label>Resolve</label>
+                <input type="number" name="system.resolve.value" value="{{actor.system.resolve.value}}" />
+                <input type="number" name="system.resolve.max" value="{{actor.system.resolve.max}}" />
+            </div>
+            <div>
+                <label>Firewall</label>
+                <input type="number" name="system.firewall.value" value="{{actor.system.firewall.value}}" />
+                <input type="number" name="system.firewall.max" value="{{actor.system.firewall.max}}" />
+            </div>
+        </div>
+
+        <h2>Other Stats</h2>
+        <div class="grid-3col">
+            <div>
+                <label>Armor</label>
+                <input type="number" name="system.armor" value="{{actor.system.armor}}" />
+            </div>
+            <div>
+                <label>Morale</label>
+                <input type="number" name="system.morale" value="{{actor.system.morale}}" />
+            </div>
+            <div>
+                <label>Security</label>
+                <input type="number" name="system.security" value="{{actor.system.security}}" />
+            </div>
+        </div>
+    </section>
+</form>
