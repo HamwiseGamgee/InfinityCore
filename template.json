@@ -223,7 +223,7 @@
 
 
     "Item": {
-      "types": [ "weapon" ],
+      "types": [ "weapon", "talent" ],
       "templates": {
         "itemcommon": {
           "description": ""
@@ -284,6 +284,9 @@
 
         }
 
+      },
+      "talent": {
+        "prerequisite": ""
       }
     }
 

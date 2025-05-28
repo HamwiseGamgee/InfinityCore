@@ -37,6 +37,7 @@
                     {{#each (pick skills "acrobatics" "closecombat" "stealth") as |skill key|}}
                     <div class="skill-entry">
                         <label>{{key}}</label>
+                        <a class="skill-roll"><i class="fas fa-dice"> </i></a>
                         <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
                         <span>F:</span>
                         <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
