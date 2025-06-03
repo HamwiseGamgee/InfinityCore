@@ -1,3 +1,4 @@
+import SkillRoll from "./module/apps/skillroll.js";
 export default class InfinityCoreActorSheet extends ActorSheet {
     get template() {
         return `systems/infinitycore/templates/sheets/${this.actor.type}-sheet.hbs`;
@@ -72,7 +73,7 @@ async _onSkillRoll(event) {
   const attrKey = element.dataset.attribute;
 
   // Launch your roll dialog
-  new SkillRollDialog(this.actor, attrKey, skillKey).render(true);
+  new SkillRoll(this.actor, attrKey, skillKey).render(true);
 }
 
   }

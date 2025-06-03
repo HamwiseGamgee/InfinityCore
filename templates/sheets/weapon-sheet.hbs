@@ -1,60 +1,37 @@
 <form class="item-sheet" autocomplete="off">
-    <header class="sheet-header flexrow">
-        <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-        <div class="header-details flexcol">
-            <h1 class="item-name">
-                <input name="name" type="text" value="{{item.name}}" placeholder="Item Name" />
-            </h1>
-            <div class="item-type">Weapon</div>
+  <header class="sheet-header flexrow">
+    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div class="header-details flexcol">
+      <h1 class="item-name">
+        <input name="name" type="text" value="{{item.name}}" placeholder="Item Name" />
+      </h1>
+      <div class="item-type">Weapon</div>
+    </div>
+  </header>
+
+  <section class="sheet-body">
+    <div class="form-group">
+      <label>Attack With</label>
+      <input type="text" name="system.attackWith" value="{{item.system.attackWith}}" />
+    </div>
+
+    <div class="form-group description-field">
+      <label>Description</label>
+      <textarea name="system.description">{{item.system.description}}</textarea>
+    </div>
+
+    <div class="form-group lock-toggle">
+      <label>Editable</label>
+      <a class="lock-icon"><i class="fas fa-lock-open"></i></a>
+    </div>
+
+    <div class="form-group stats-row flexrow">
+      {{#each (array "damage" "size" "restriction" "cost" "tariff") as |field|}}
+        <div class="stat-block flexcol">
+          <label>{{capitalize field}}</label>
+          <input type="number" name="system.{{field}}" value="{{lookup item.system field}}" />
         </div>
-    </header>
-
-    <section class="sheet-body">
-        <!-- Attack With -->
-        <div class="form-group">
-            <label for="system.attackWith">Attack With</label>
-            <input type="text" name="system.attackWith" value="{{item.system.attackWith}}" />
-        </div>
-
-        <!-- Description -->
-        <div class="form-group description-field">
-            <label>Description</label>
-            <textarea name="system.description">{{item.system.description}}</textarea>
-        </div>
-
-
-        <!-- Lock Toggle -->
-        <div class="form-group lock-toggle">
-            <label>Editable</label>
-            <a class="lock-icon"><i class="fas fa-lock-open"></i></a>
-        </div>
-
-        <!-- Stats Row -->
-        <div class="form-group stats-row flexrow">
-            <div class="stat-block flexcol">
-                <label for="system.damage">Damage</label>
-                <input type="number" name="system.damage" value="{{item.system.damage}}" />
-            </div>
-
-            <div class="stat-block flexcol">
-                <label for="system.size">Size</label>
-                <input type="number" name="system.size" value="{{item.system.size}}" />
-            </div>
-
-            <div class="stat-block flexcol">
-                <label for="system.restriction">Restriction</label>
-                <input type="number" name="system.restriction" value="{{item.system.restriction}}" />
-            </div>
-
-            <div class="stat-block flexcol">
-                <label for="system.cost">Cost</label>
-                <input type="number" name="system.cost" value="{{item.system.cost}}" />
-            </div>
-
-            <div class="stat-block flexcol">
-                <label for="system.tariff">Tariff</label>
-                <input type="number" name="system.tariff" value="{{item.system.tariff}}" />
-            </div>
-        </div>
-    </section>
+      {{/each}}
+    </div>
+  </section>
 </form>

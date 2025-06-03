@@ -1,92 +1,73 @@
 <form class="actor-sheet" autocomplete="off">
-    <header class="sheet-header flexrow">
-        <img class="actor-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
-        <div class="header-details flexcol">
-            <h1 class="actor-name">
-                <input name="name" type="text" value="{{actor.name}}" placeholder="Character Name" />
-            </h1>
-            <div class="actor-type">{{actor.type}}</div>
-            <label>Faction</label>
-            <input name="system.faction" type="text" value="{{actor.system.faction}}" />
+  <header class="sheet-header flexrow">
+    <img class="actor-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+    <div class="header-details flexcol">
+      <h1 class="actor-name">
+        <input name="name" type="text" value="{{actor.name}}" placeholder="Character Name" />
+      </h1>
+      <div class="actor-type">{{actor.type}}</div>
+      <label>Faction</label>
+      <input name="system.faction" type="text" value="{{actor.system.faction}}" />
+    </div>
+  </header>
+
+  <section class="sheet-body">
+    <h2>Infinity Points</h2>
+    <div class="grid-2col">
+      {{#each (array "value" "max") as |field|}}
+        <div>
+          <label>{{capitalize field}}</label>
+          <input name="system.infinitypoints.{{field}}" type="number" value="{{lookup actor.system.infinitypoints field}}" />
         </div>
-    </header>
+      {{/each}}
+    </div>
 
-    <section class="sheet-body">
-        <h2>Infinity Points</h2>
-        <div class="grid-2col">
-            <div>
-                <label>Current</label>
-                <input name="system.infinitypoints.value" type="number" value="{{actor.system.infinitypoints.value}}" />
-            </div>
-            <div>
-                <label>Max</label>
-                <input name="system.infinitypoints.max" type="number" value="{{actor.system.infinitypoints.max}}" />
-            </div>
-        </div>
-
-        <section class="sheet-section skills-by-attribute">
-  <h2>Skills</h2>
-
-  {{#each actor.system.attributes as |attribute attrKey|}}
-    <div class="attribute-skill-group">
-      <h3>{{capitalize attrKey}}</h3>
-      <div class="skill-grid">
-        {{#each attribute.skill as |skill skillKey|}}
-          <div class="skill-entry">
-            <label>{{capitalize skillKey}}</label>
-            <a class="skill-roll" data-skill="{{skillKey}}" data-attribute="{{attrKey}}">
-              <i class="fas fa-dice-d20"> </i>
-            </a>
-            <input type="number" name="system.attributes.{{attrKey}}.skill.{{skillKey}}.value" value="{{skill.value}}" />
-            <span>Focus:</span>
-            <input type="number" name="system.attributes.{{attrKey}}.skill.{{skillKey}}.focus" value="{{skill.focus}}" />
+    <section class="sheet-section skills-by-attribute">
+      <h2>Skills</h2>
+      {{#each actor.system.attributes as |attribute attrKey|}}
+        <div class="attribute-skill-group">
+          <h3>{{capitalize attrKey}}</h3>
+          <div class="skill-grid">
+            {{#each attribute.skill as |skill skillKey|}}
+              <div class="skill-entry">
+                <label>{{capitalize skillKey}}</label>
+                <a class="skill-roll" data-skill="{{skillKey}}" data-attribute="{{attrKey}}">
+                  <i class="fas fa-dice-d20"></i>
+                </a>
+                <input type="number" name="system.attributes.{{attrKey}}.skill.{{skillKey}}.value" value="{{skill.value}}" />
+                <span>Focus:</span>
+                <input type="number" name="system.attributes.{{attrKey}}.skill.{{skillKey}}.focus" value="{{skill.focus}}" />
+              </div>
+            {{/each}}
           </div>
-        {{/each}}
-      </div>
-    </div>
-  {{/each}}
-</section>
-
-
-
-<h2>Vitals (Damage Tracking)</h2>
-<div class="grid-3col damage-trackers">
-  {{#each (array
-    (object "key" "vigour" "label" "Vigour" "data" actor.system.vigour)
-    (object "key" "resolve" "label" "Resolve" "data" actor.system.resolve)
-    (object "key" "firewall" "label" "Firewall" "data" actor.system.firewall)
-  ) as |track|}}
-    <div class="damage-track">
-      <label>{{track.label}}</label>
-      <div class="checkbox-row">
-        {{#each (range 0 track.data.max) as |i|}}
-          <input type="checkbox"
-                 type="checkbox"
-                 data-key="{{track.key}}"
-                 data-index="{{i}}"
-                 {{#unless ../actor.isOwner}}disabled{{/unless}}
-                 {{#if (lt i track.data.value)}}checked{{/if}} />
-        {{/each}}
-      </div>
-    </div>
-  {{/each}}
-</div>
-
-
-        <h2>Other Stats</h2>
-        <div class="grid-3col">
-            <div>
-                <label>Armor</label>
-                <input type="number" name="system.armor" value="{{actor.system.armor}}" />
-            </div>
-            <div>
-                <label>Morale</label>
-                <input type="number" name="system.morale" value="{{actor.system.morale}}" />
-            </div>
-            <div>
-                <label>Security</label>
-                <input type="number" name="system.security" value="{{actor.system.security}}" />
-            </div>
         </div>
+      {{/each}}
     </section>
+
+    <h2>Vitals (Damage Tracking)</h2>
+    <div class="grid-3col damage-trackers">
+      {{#each (array
+        (object "key" "vigour" "label" "Vigour" "data" actor.system.vigour)
+        (object "key" "resolve" "label" "Resolve" "data" actor.system.resolve)
+        (object "key" "firewall" "label" "Firewall" "data" actor.system.firewall)
+      ) as |track|}}
+        <div class="damage-track">
+          <label>{{capitalize track.label}}</label>
+          <div class="checkbox-row">
+            {{damageBoxes track.data key=track.key disabled=(not @root.actor.isOwner)}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+    <h2>Other Stats</h2>
+    <div class="grid-3col">
+      {{#each (array "armor" "morale" "security") as |stat|}}
+        <div>
+          <label>{{capitalize stat}}</label>
+          <input type="number" name="system.{{stat}}" value="{{lookup actor.system stat}}" />
+        </div>
+      {{/each}}
+    </div>
+  </section>
 </form>
