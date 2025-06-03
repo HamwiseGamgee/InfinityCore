@@ -1,0 +1,18 @@
+<form>
+  <div class="form-group">
+    <label>Attribute + Skill</label>
+    <input type="text" value="{{skill.value}}" disabled/>
+  </div>
+  <div class="form-group">
+    <label>Focus</label>
+    <input type="text" value="{{skill.focus}}" disabled/>
+  </div>
+  <div class="form-group">
+  <label for="dice-count">Number of Dice</label>
+  <input type="range" name="dice-count" min="1" max="5" value="2" step="1">
+  <span class="dice-count-display">2</span>
+</div>
+  <div class="form-group">
+    <button type="button" class="roll">Roll</button>
+  </div>
+</form>

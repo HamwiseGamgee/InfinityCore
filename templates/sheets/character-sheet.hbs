@@ -25,115 +25,28 @@
         </div>
 
         <section class="sheet-section skills-by-attribute">
-            <h2>Skills</h2>
+  <h2>Skills</h2>
 
-            {{!-- Define skills grouped by attribute --}}
-            {{~#with actor.system.skill as |skills|~}}
+  {{#each actor.system.attributes as |attribute attrKey|}}
+    <div class="attribute-skill-group">
+      <h3>{{capitalize attrKey}}</h3>
+      <div class="skill-grid">
+        {{#each attribute.skill as |skill skillKey|}}
+          <div class="skill-entry">
+            <label>{{capitalize skillKey}}</label>
+            <a class="skill-roll" data-skill="{{skillKey}}" data-attribute="{{attrKey}}">
+              <i class="fas fa-dice-d20"> </i>
+            </a>
+            <input type="number" name="system.attributes.{{attrKey}}.skill.{{skillKey}}.value" value="{{skill.value}}" />
+            <span>Focus:</span>
+            <input type="number" name="system.attributes.{{attrKey}}.skill.{{skillKey}}.focus" value="{{skill.focus}}" />
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  {{/each}}
+</section>
 
-            {{!-- Agility --}}
-            <div class="attribute-skill-group">
-                <h3>Agility</h3>
-                <div class="skill-grid">
-                    {{#each (pick skills "acrobatics" "closecombat" "stealth") as |skill key|}}
-                    <div class="skill-entry">
-                        <label>{{key}}</label>
-                        <a class="skill-roll"><i class="fas fa-dice"> </i></a>
-                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
-                        <span>F:</span>
-                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
-
-            {{!-- Awareness --}}
-            <div class="attribute-skill-group">
-                <h3>Awareness</h3>
-                <div class="skill-grid">
-                    {{#each (pick skills "analysis" "extraplanetary" "observation" "survival" "theivery") as |skill key|}}
-                    <div class="skill-entry">
-                        <label>{{key}}</label>
-                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
-                        <span>F:</span>
-                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
-
-            {{!-- Repeat this pattern for all other attributes --}}
-            <div class="attribute-skill-group">
-                <h3>Brawn</h3>
-                <div class="skill-grid">
-                    {{#each (pick skills "athletics" "resistance") as |skill key|}}
-                    <div class="skill-entry">
-                        <label>{{key}}</label>
-                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
-                        <span>F:</span>
-                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
-
-            <div class="attribute-skill-group">
-                <h3>Coordination</h3>
-                <div class="skill-grid">
-                    {{#each (pick skills "ballistics" "pilot" "spacecraft") as |skill key|}}
-                    <div class="skill-entry">
-                        <label>{{key}}</label>
-                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
-                        <span>F:</span>
-                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
-
-            <div class="attribute-skill-group">
-                <h3>Intelligence</h3>
-                <div class="skill-grid">
-                    {{#each (pick skills "education" "hacking" "medicine" "psychology" "science" "tech") as |skill key|}}
-                    <div class="skill-entry">
-                        <label>{{key}}</label>
-                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
-                        <span>F:</span>
-                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
-
-            <div class="attribute-skill-group">
-                <h3>Personality</h3>
-                <div class="skill-grid">
-                    {{#each (pick skills "animalhandling" "command" "lifestyle" "persuade") as |skill key|}}
-                    <div class="skill-entry">
-                        <label>{{key}}</label>
-                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
-                        <span>F:</span>
-                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
-
-            <div class="attribute-skill-group">
-                <h3>Willpower</h3>
-                <div class="skill-grid">
-                    {{#each (pick skills "discipline") as |skill key|}}
-                    <div class="skill-entry">
-                        <label>{{key}}</label>
-                        <input type="number" name="system.skill.{{key}}.value" value="{{skill.value}}" />
-                        <span>F:</span>
-                        <input type="number" name="system.skill.{{key}}.focus" value="{{skill.focus}}" />
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
-
-            {{~/with}}
-        </section>
 
 
         <h2>Vitals</h2>

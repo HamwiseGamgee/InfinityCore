@@ -1,6 +1,8 @@
 import InfinityCoreItemSheet from "./module/sheets/infinitycore-item-sheet.js";
 import InfinityCoreActorSheet from "./module/sheets/infinitycore-actor-sheet.js";
 import itemRoll from "./module/apps/itemroll.js";
+import SkillRoll from "./module/apps/skill-roll.js";
+
 
 
 Hooks.once("init", function () {

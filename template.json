@@ -10,31 +10,189 @@
         "attributes": {
           "agility": {
             "value": 7,
-            "selected": true
+            "selected": true,
+            "skill": {
+            "acrobatics": {
+            "value": 0,
+            "selected": true,
+            "focus": 0,
+            "complication": 0
+          },
+          "closecombat": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "stealth": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          }
+            }
           },
           "awareness": {
             "value": 7,
-            "selected": false
+            "selected": false,
+            "skill": {
+            "analysis": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "extraplanetary": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "observation": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "survival": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "theivery": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          }
+            }
           },
           "brawn": {
             "value": 7,
-            "selected": false
+            "selected": false,
+            "skill": {
+            "athletics": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "resistance": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          }
+            }
           },
           "coordination": {
             "value": 7,
-            "selected": false
+            "selected": false,
+            "skill": {
+            "ballistics": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "pilot": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "spacecraft": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          }
+            }
           },
           "intelligence": {
             "value": 7,
-            "selected": false
+            "selected": false,
+            "skill": {
+            "education": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "hacking": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "medicine": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "psychology": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "science": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "tech": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          }
+            }
           },
           "personality": {
             "value": 7,
-            "selected": false
+            "selected": false,
+            "skill": {
+          "animalhandling": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "command": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "lifestyle": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          },
+          "persuade": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          }
+            }
           },
           "willpower": {
             "value": 7,
-            "selected": false
+            "selected": false,
+            "skill": {
+              "discipline": {
+            "value": 0,
+            "selected": false,
+            "focus": 0,
+            "complication": 0
+          }
+            }
           }
 
         },
@@ -49,153 +207,6 @@
         "firewall": {
           "value": 0,
           "max": 0
-        },
-
-        "skill": {
-          "acrobatics": {
-            "value": 0,
-            "selected": true,
-            "focus": 0,
-            "complication": 0
-          },
-          "analysis": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "animalhandling": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "athletics": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "ballistics": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "closecombat": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "command": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "discipline": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "education": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "extraplanetary": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "hacking": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "lifestyle": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "medicine": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "observation": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "persuade": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "pilot": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "psychology": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "resistance": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "science": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "spacecraft": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "stealth": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "survival": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "tech": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          },
-          "theivery": {
-            "value": 0,
-            "selected": false,
-            "focus": 0,
-            "complication": 0
-          }
         },
 
         "armor": 0,

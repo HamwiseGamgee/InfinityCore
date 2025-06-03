@@ -29,7 +29,7 @@ export default class InfinityCoreActorSheet extends ActorSheet {
   }
 
 
-    }
+    
 
     activateListeners(html) {
         super.activateListeners(html);
@@ -39,71 +39,27 @@ export default class InfinityCoreActorSheet extends ActorSheet {
     if (this.actor.owner) {
         html.find("item-roll").click(this._onItemRoll.bind(this));
     }
-    /*async _onAttributeTest(event, selectedAttribute, selectedAttributeValue, selectedSkill, selectedSkillValue) {
-  event.preventDefault();
+      if (this.actor.isOwner) {
+    html.find(".skill-roll").click(this._onSkillRoll.bind(this));
+      }
+      }
 
-  const defaultValue = 2;
-  const speaker = this.actor;
-  const template = 'InfinityCore/module/apps/skillroll.js';
-
-  const html = await foundry.applications.handlebars.renderTemplate(template, {
-    defaultValue
-  });
-
-  const formData = await api.DialogV2.wait({
-    window: {
-      title: game.i18n.localize('sta.apps.dicepoolwindow')  // Consider updating localization key
-    },
-    position: {
-      height: 'auto',
-      width: 350
-    },
-    content: html,
-    classes: ['dialogue'],
-    buttons: [{
-      action: 'roll',
-      default: true,
-      label: game.i18n.localize('sta.apps.rolldice'),  // Consider updating localization key
-      callback: (event, button, dialog) => {
-        const form = dialog.element.querySelector('form');
-        return form ? new FormData(form) : null;
-      },
-    }],
-    close: () => null,
-  });
-
-  if (formData) {
-    const dicePool = parseInt(formData.get('dicePoolSlider'), 10) || defaultValue;
-    const usingFocus = formData.get('usingFocus') === 'on';
-    const usingDedicatedFocus = formData.get('usingDedicatedFocus') === 'on';
-    const usingDetermination = formData.get('usingDetermination') === 'on';
-    const complicationRange = parseInt(formData.get('complicationRange'), 10) || 1;
-
-    const staRoll = new STARoll();
-    staRoll.performAttributeTest(
-      dicePool,
-      usingFocus,
-      usingDedicatedFocus,
-      usingDetermination,
-      selectedAttribute,
-      selectedAttributeValue,
-      selectedSkill,
-      selectedSkillValue,
-      complicationRange,
-      speaker
-    );
-  }
-}
-*/
     _onItemRoll(event) {
         const itemID = event.currentTarget.closest(".item").dataset.itemID;
-        const item = this.actor.getOwnedItem(itemID);
+        const item = this.actor.items.get(itemID);
 
         item.roll();
     }
-    _onSkillRoll (event) {
-        const skill = this.actor.{{key}}.value;
-        const attribute = this.actor{{}}
-    }
+async _onSkillRoll(event) {
+  event.preventDefault();
+
+  const element = event.currentTarget;
+  const skillKey = element.dataset.skill;
+  const attrKey = element.dataset.attribute;
+
+  // Launch your roll dialog
+  new SkillRollDialog(this.actor, attrKey, skillKey).render(true);
+}
+
   }
 
