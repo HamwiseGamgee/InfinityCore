@@ -1,7 +1,7 @@
 import InfinityCoreItemSheet from "./module/sheets/infinitycore-item-sheet.js";
 import InfinityCoreActorSheet from "./module/sheets/infinitycore-actor-sheet.js";
 import itemRoll from "./module/apps/itemroll.js";
-import SkillRoll from "./module/apps/skill-roll.js";
+import SkillRoll from "./module/apps/skillroll.js";
 
 
 
@@ -38,4 +38,20 @@ Handlebars.registerHelper("pick", function (obj, ...keys) {
         if (obj[key]) result[key] = obj[key];
     }
     return result;
+});
+Handlebars.registerHelper("range", function(start, end) {
+  return Array.from({ length: end - start }, (_, i) => i + start);
+});
+
+Handlebars.registerHelper("gte", function(a, b) {
+  return a >= b;
+});
+
+Handlebars.registerHelper("array", (...args) => args.slice(0, -1)); // for grouping in template
+Handlebars.registerHelper("object", function (...args) {
+  const options = args.pop();
+  return args.reduce((obj, val, idx, arr) => {
+    if (idx % 2 === 0) obj[val] = arr[idx + 1];
+    return obj;
+  }, {});
 });

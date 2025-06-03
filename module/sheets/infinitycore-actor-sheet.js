@@ -31,18 +31,32 @@ export default class InfinityCoreActorSheet extends ActorSheet {
 
     
 
-    activateListeners(html) {
-        super.activateListeners(html);
-        // Add JS listeners here if needed   
-    
-        //  // Owner-only listeners
-    if (this.actor.owner) {
-        html.find("item-roll").click(this._onItemRoll.bind(this));
-    }
-      if (this.actor.isOwner) {
+activateListeners(html) {
+  super.activateListeners(html);
+
+  // Owner-only listeners
+  if (this.actor.isOwner) {
+    // Skill rolls
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
-      }
-      }
+
+    // Item rolls
+    html.find(".item-roll").click(this._onItemRoll.bind(this));
+
+    // Damage tracker checkboxes
+    html.find(".checkbox-row input[type='checkbox']").on("click", async ev => {
+  const input = ev.currentTarget;
+  const key = input.dataset.key;
+  const index = parseInt(input.dataset.index);
+  const checked = input.checked;
+
+  // Set the new value based on checkbox clicked
+  const newValue = checked ? index + 1 : index;
+  await this.actor.update({ [`system.${key}.value`]: newValue });
+});
+
+  }
+}
+
 
     _onItemRoll(event) {
         const itemID = event.currentTarget.closest(".item").dataset.itemID;

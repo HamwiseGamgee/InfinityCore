@@ -49,24 +49,29 @@
 
 
 
-        <h2>Vitals</h2>
-        <div class="grid-3col">
-            <div>
-                <label>Vigour</label>
-                <input type="number" name="system.vigour.value" value="{{actor.system.vigour.value}}" />
-                <input type="number" name="system.vigour.max" value="{{actor.system.vigour.max}}" />
-            </div>
-            <div>
-                <label>Resolve</label>
-                <input type="number" name="system.resolve.value" value="{{actor.system.resolve.value}}" />
-                <input type="number" name="system.resolve.max" value="{{actor.system.resolve.max}}" />
-            </div>
-            <div>
-                <label>Firewall</label>
-                <input type="number" name="system.firewall.value" value="{{actor.system.firewall.value}}" />
-                <input type="number" name="system.firewall.max" value="{{actor.system.firewall.max}}" />
-            </div>
-        </div>
+<h2>Vitals (Damage Tracking)</h2>
+<div class="grid-3col damage-trackers">
+  {{#each (array
+    (object "key" "vigour" "label" "Vigour" "data" actor.system.vigour)
+    (object "key" "resolve" "label" "Resolve" "data" actor.system.resolve)
+    (object "key" "firewall" "label" "Firewall" "data" actor.system.firewall)
+  ) as |track|}}
+    <div class="damage-track">
+      <label>{{track.label}}</label>
+      <div class="checkbox-row">
+        {{#each (range 0 track.data.max) as |i|}}
+          <input type="checkbox"
+                 type="checkbox"
+                 data-key="{{track.key}}"
+                 data-index="{{i}}"
+                 {{#unless ../actor.isOwner}}disabled{{/unless}}
+                 {{#if (lt i track.data.value)}}checked{{/if}} />
+        {{/each}}
+      </div>
+    </div>
+  {{/each}}
+</div>
+
 
         <h2>Other Stats</h2>
         <div class="grid-3col">
