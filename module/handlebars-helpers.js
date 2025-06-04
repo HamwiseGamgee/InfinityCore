@@ -64,5 +64,13 @@ export function registerHandlebarsHelpers() {
     html += "</div>";
     return new Handlebars.SafeString(html);
   });
+    Handlebars.registerHelper('merge', function (...args) {
+        const options = args.pop(); // Remove the last argument (Handlebars options)
+        return Object.assign({}, ...args);
+    });
+    Handlebars.registerHelper("get", function (obj, key) {
+        return obj?.[key];
+    });
+
 
 }

@@ -16,8 +16,9 @@
     <div class="grid-2col">
       {{#each (array "value" "max") as |field|}}
         <div>
-          <label>{{capitalize field}}</label>
-          <input name="system.infinitypoints.{{field}}" type="number" value="{{lookup actor.system.infinitypoints field}}" />
+            <label>{{capitalize field}}</label>
+            <input name="system.infinitypoints.{{field}}" type="number" value="{{get actor.system.infinitypoints field}}" />
+
         </div>
       {{/each}}
     </div>
@@ -58,7 +59,7 @@
         <div class="damage-track">
           <label>{{capitalize track.label}}</label>
           <div class="checkbox-row">
-            {{damageBoxes track.data key=track.key disabled=(not @root.actor.isOwner)}}
+              {{damageBoxes (merge (object "value" 0 "max" 7) track.data) key=track.key disabled=(not @root.actor.isOwner)}}
           </div>
         </div>
       {{/each}}
@@ -69,7 +70,7 @@
       {{#each (array "armor" "morale" "security") as |stat|}}
         <div>
           <label>{{capitalize stat}}</label>
-          <input type="number" name="system.{{stat}}" value="{{lookup actor.system stat}}" />
+          <input type="number" name="system.{{stat}}" value="{{get actor.system stat}}" />
         </div>
       {{/each}}
     </div>
