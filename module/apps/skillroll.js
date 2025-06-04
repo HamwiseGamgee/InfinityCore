@@ -8,9 +8,9 @@ export default class SkillRoll extends Application {
 
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      id: "skill-roll-dialog",
+      id: "skill-roll",
       title: "Skill Roll",
-      template: "systems/infinitycore/templates/apps/skill-roll-dialog.hbs",
+      template: "systems/infinitycore/templates/apps/skill-roll.hbs",
       classes: ["infinitycore", "dialog"],
       width: 400
     });

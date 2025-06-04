@@ -1,6 +1,6 @@
 import InfinityCoreItemSheet from "./module/sheets/infinitycore-item-sheet.js";
 import InfinityCoreActorSheet from "./module/sheets/infinitycore-actor-sheet.js";
-import { registerHandlebarsHelpers } from "./module/helpers/handlebars-helpers.js";
+import { registerHandlebarsHelpers } from "./module/handlebars-helpers.js";
 import itemRoll from "./module/apps/itemroll.js";
 
 

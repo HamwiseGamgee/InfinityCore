@@ -10,12 +10,13 @@
   "esmodules": [
     "infinitycore.js"
   ],
-  "styles": ["infinitycore.css"],
+  "styles": [ "infinitycore.css" ],
   "grid.distance": 5,
   "grid.units": "ft",
   "primaryTokenAttribute": "vigour",
   "system": {
     "name": "infinitycore",
     "version": "0.01"
-  }
+  },
+  "itemTypes": [ "weapon", "talent" ]
 }
