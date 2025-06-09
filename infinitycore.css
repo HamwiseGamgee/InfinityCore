@@ -168,3 +168,22 @@ input[type="text"] {
         font-size: 0.8em;
         color: #aaa;
     }
+
+.roll-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .roll-button button {
+        background-color: #444;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        border: 1px solid #888;
+        cursor: pointer;
+    }
+
+        .roll-button button:hover {
+            background-color: #666;
+        }

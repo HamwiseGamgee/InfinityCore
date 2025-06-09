@@ -17,23 +17,34 @@ export default class InfinityCoreActorSheet extends ActorSheet {
             }
         }
 
-        // Initialize all traits with defaults
-        const defaultTraits = {
+        // Initialize structured traits (they use .value and .max)
+        const structuredTraits = {
             vigour: 7,
             firewall: 7,
-            resolve: 7,
+            resolve: 7
+        };
+
+        for (const key in structuredTraits) {
+            system[key] = system[key] || {};
+            if (system[key].value == null) {
+                system[key].value = structuredTraits[key];
+            }
+        }
+
+        // Initialize flat numeric stats
+        const flatStats = {
             armor: 0,
             morale: 0,
             security: 0
         };
 
-        for (const key in defaultTraits) {
-            system[key] = system[key] || {};
-            if (system[key].value == null) {
-                system[key].value = defaultTraits[key];
+        for (const key in flatStats) {
+            if (system[key] == null || typeof system[key] === "object") {
+                system[key] = flatStats[key];
             }
         }
     }
+
 
     prepareDerivedData() {
         super.prepareDerivedData();

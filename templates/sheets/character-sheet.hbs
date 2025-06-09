@@ -67,12 +67,18 @@
 
     <h2>Other Stats</h2>
     <div class="grid-3col">
-      {{#each (array "armor" "morale" "security") as |stat|}}
         <div>
-          <label>{{capitalize stat}}</label>
-          <input type="number" name="system.{{stat}}" value="{{get actor.system stat}}" />
+            <label>Armor</label>
+            <input type="number" name="system.armor" value="{{actor.system.armor}}" />
         </div>
-      {{/each}}
+        <div>
+            <label>Morale</label>
+            <input type="number" name="system.morale" value="{{actor.system.morale}}" />
+        </div>
+        <div>
+            <label>Security</label>
+            <input type="number" name="system.security" value="{{actor.system.security}}" />
+        </div>
     </div>
   </section>
 </form>
