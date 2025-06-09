@@ -239,7 +239,8 @@
       },
       "weapon": {
         "attackWith": "ballistics",
-        "damage": 0,
+        "flatdamage": 0,
+        "damagedice": 0,
         "size": 0,
         "restriction": 0,
         "cost": 0,

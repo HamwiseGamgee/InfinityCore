@@ -7,51 +7,51 @@ export default class InfinityCoreActorSheet extends ActorSheet {
 
     prepareData() {
         super.prepareData();
+        const system = this.actor.system;
+        const attributes = system.attributes ?? {};
 
-        // Loop over all attributes and set default to 7 if not set
-        const attributes = this.actor.attributes;
+        // Ensure all attributes have a value
         for (const attrKey in attributes) {
-            if (attributes[attrKey].value === undefined || attributes[attrKey].value === null) {
+            if (attributes[attrKey].value == null) {
                 attributes[attrKey].value = 7;
             }
         }
-        system.vigour = system.vigour || {};
-        if (system.vigour.value === undefined || system.vigour.value === null) {
-            system.vigour.value = 7;
-        }
-        system.firewall = system.firewall || {};
-        if (system.firewall.value === undefined || system.firewall.value === null) {
-            system.firewall.value = 7;
-        }
-        system.resolve = system.resolve || {};
-        if (system.resolve.value === undefined || system.resolve.value === null) {
-            system.resolve.value = 7;
+
+        // Initialize all traits with defaults
+        const defaultTraits = {
+            vigour: 7,
+            firewall: 7,
+            resolve: 7,
+            armor: 0,
+            morale: 0,
+            security: 0
+        };
+
+        for (const key in defaultTraits) {
+            system[key] = system[key] || {};
+            if (system[key].value == null) {
+                system[key].value = defaultTraits[key];
+            }
         }
     }
 
     prepareDerivedData() {
         super.prepareDerivedData();
+        const system = this.actor.system;
 
-        const brawn = this.actor.system.attributes.brawn?.value ?? 0;
-        const resistance = this.actor.system.attributes.brawn.skill.resistance.value?.value ?? 0;
+        const brawn = system.attributes?.brawn?.value ?? 0;
+        const resistance = system.attributes?.brawn?.skill?.resistance?.value ?? 0;
+        system.vigour.max = brawn + resistance;
 
-        this.actor.system.vigour = this.actor.system.vigour || {};
-        this.actor.system.vigour.max = brawn + resistance;
+        const intelligence = system.attributes?.intelligence?.value ?? 0;
+        const hacking = system.attributes?.intelligence?.skill?.hacking?.value ?? 0;
+        system.firewall.max = intelligence + hacking;
 
-        const intelligence = this.actor.system.attributes.intelligence?.value ?? 0;
-        const hacking = this.actor.system.attributes.intelligence.skill.hacking.value?.value ?? 0;
-
-        this.actor.system.firewall = this.actor.system.firewall || {};
-        this.actor.system.firewall.max = intelligence + hacking;
-
-        const willpower = this.actor.system.attributes.willpower?.value ?? 0;
-        const discipline = this.actor.system.attributes.willpower.skill.discipline.value?.value ?? 0;
-
-        this.actor.system.resolve = this.actor.system.resolve || {};
-        this.actor.system.resolve.max = willpower + discipline;
+        const willpower = system.attributes?.willpower?.value ?? 0;
+        const discipline = system.attributes?.willpower?.skill?.discipline?.value ?? 0;
+        system.resolve.max = willpower + discipline;
     }
 
-    // Note: Foundry's getData is normally sync; adjust if your system expects async
     async getData(options) {
         const baseData = await super.getData(options);
         const context = await this._prepareContext(options);
@@ -64,12 +64,11 @@ export default class InfinityCoreActorSheet extends ActorSheet {
         const disciplines = systemData.skill ?? {};
         const notes = systemData.notes ?? "";
 
-        // Clamp values safely
-        for (const [, attr] of Object.entries(attributes)) {
+        for (const attr of Object.values(attributes)) {
             attr.value = Math.max(0, Math.min(99, attr.value ?? 0));
         }
 
-        for (const [, disc] of Object.entries(disciplines)) {
+        for (const disc of Object.values(disciplines)) {
             disc.value = Math.max(0, Math.min(99, disc.value ?? 0));
         }
 
@@ -100,8 +99,14 @@ export default class InfinityCoreActorSheet extends ActorSheet {
             await this.actor.update({ [`system.${key}.value`]: newValue });
         });
 
-        // Register change listener once on the brawn and resistance inputs
-        html.find('input[name="system.attributes.brawn.value"], input[name="system.attributes.brawn.skill.resistance.value"], input[name="system.attributes.intelligence.value"], input[name="system.attributes.intelligence.skill.hacking.value"], input[name="system.attributes.willpower.value"], input[name="system.attributes.willpower.skill.discipline.value"]').on('change', async event => {
+        html.find(`
+            input[name="system.attributes.brawn.value"],
+            input[name="system.attributes.brawn.skill.resistance.value"],
+            input[name="system.attributes.intelligence.value"],
+            input[name="system.attributes.intelligence.skill.hacking.value"],
+            input[name="system.attributes.willpower.value"],
+            input[name="system.attributes.willpower.skill.discipline.value"]
+        `).on("change", async () => {
             const brawn = parseInt(html.find('input[name="system.attributes.brawn.value"]').val()) || 0;
             const resistance = parseInt(html.find('input[name="system.attributes.brawn.skill.resistance.value"]').val()) || 0;
 
@@ -119,22 +124,19 @@ export default class InfinityCoreActorSheet extends ActorSheet {
 
             this.render();
         });
-
     }
 
     _onItemRoll(event) {
-        const itemID = event.currentTarget.closest(".item")?.dataset.itemID;
+        const itemID = event.currentTarget.closest(".item")?.dataset.itemId;
         const item = this.actor.items.get(itemID);
         item?.roll?.();
     }
 
     async _onSkillRoll(event) {
         event.preventDefault();
-
         const element = event.currentTarget;
         const skillKey = element.dataset.skill;
         const attrKey = element.dataset.attribute;
-
         new SkillRoll(this.actor, attrKey, skillKey).render(true);
     }
 }
