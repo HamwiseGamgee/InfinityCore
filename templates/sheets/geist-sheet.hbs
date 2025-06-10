@@ -1,0 +1,75 @@
+<form class="actor-sheet" autocomplete="off">
+    <header class="sheet-header flexrow">
+        <img class="actor-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <div class="header-details flexcol">
+            <h1 class="actor-name">
+                <input name="name" type="text" value="{{actor.name}}" placeholder="Geist Name" />
+            </h1>
+            <div class="actor-type">{{actor.type}}</div>
+
+        </div>
+    </header>
+
+    <section class="sheet-body">
+
+
+        <section class="sheet-section skills-by-attribute">
+            <h2>Skills</h2>
+            {{#each actor.system.attributes as |attribute attrKey|}}
+            <div class="attribute-skill-group">
+                <h3>{{capitalize attrKey}}</h3>
+                <div class="attribute-header">
+                    <label>Attribute Value:</label>
+                    <input class="attribute-value" type="number" name="system.attributes.{{attrKey}}.value" value="{{attribute.value}}" />
+                </div>
+                <div class="skill-grid">
+                    {{#each attribute.skill as |skill skillKey|}}
+                    <div class="skill-entry">
+                        <label>{{capitalize skillKey}}</label>
+                        <a class="skill-roll" data-skill="{{skillKey}}" data-attribute="{{attrKey}}">
+                            <i class="fas fa-dice-d20"></i>
+                        </a>
+                        <input type="number" name="system.attributes.{{attrKey}}.skill.{{skillKey}}.value" value="{{skill.value}}" />
+                        <span>Focus:</span>
+                        <input type="number" name="system.attributes.{{attrKey}}.skill.{{skillKey}}.focus" value="{{skill.focus}}" />
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
+        </section>
+
+        <h2>Vitals (Damage Tracking)</h2>
+        <div class="grid-3col damage-trackers">
+            {{#each (array
+        (object "key" "vigour" "label" "Structure" "data" actor.system.vigour)
+        (object "key" "resolve" "label" "Resolve" "data" actor.system.resolve)
+        (object "key" "firewall" "label" "Firewall" "data" actor.system.firewall)
+      ) as |track|
+            }}
+            <div class="damage-track">
+                <label>{{capitalize track.label}}</label>
+                <div class="checkbox-row">
+                    {{damageBoxes (merge (object "value" 0 "max" 7) track.data) key=track.key disabled=(not @root.actor.isOwner)}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <h2>Other Stats</h2>
+        <div class="grid-3col">
+            <div>
+                <label>Armor</label>
+                <input type="number" name="system.armor" value="{{actor.system.armor}}" />
+            </div>
+            <div>
+                <label>Morale</label>
+                <input type="number" name="system.morale" value="{{actor.system.morale}}" />
+            </div>
+            <div>
+                <label>Security</label>
+                <input type="number" name="system.security" value="{{actor.system.security}}" />
+            </div>
+        </div>
+    </section>
+</form>

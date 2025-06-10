@@ -22,7 +22,7 @@ Hooks.once("init", function () {
     // Register custom Actor sheet
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("infinitycore", InfinityCoreActorSheet, {
-        types: ["character"], // you can add more types here later
+        types: ["character", "geist", "npc"], // you can add more types here later
         makeDefault: true,
     });
 

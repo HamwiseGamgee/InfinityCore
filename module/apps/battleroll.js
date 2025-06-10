@@ -1,11 +1,11 @@
 export class BattleRoll{
-  
+
 }
 
 /*
   Returns the number of successes in a d6 challenge die roll
 */
-function getSuccessesFromBattleRoll(roll) {
+export function getSuccessesFromBattleRoll(roll) {
   let dice = roll.terms[0].results.map((die) => die.result);
   dice = dice.map((die) => {
     if (die <= 2) {
@@ -19,7 +19,7 @@ function getSuccessesFromBattleRoll(roll) {
 /*
   Returns the number of effects in a  d6 challenge die roll
 */
-function getEffectsFromBattleRoll(roll) {
+export function getEffectsFromBattleRoll(roll) {
   let dice = roll.terms[0].results.map((die) => die.result);
   dice = dice.map((die) => {
     if (die >= 6) {

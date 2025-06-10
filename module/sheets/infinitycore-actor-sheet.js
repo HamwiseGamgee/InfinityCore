@@ -21,7 +21,7 @@ export default class InfinityCoreActorSheet extends ActorSheet {
         const structuredTraits = {
             vigour: 7,
             firewall: 7,
-            resolve: 7
+            resolve: 7,
         };
 
         for (const key in structuredTraits) {
@@ -61,6 +61,7 @@ export default class InfinityCoreActorSheet extends ActorSheet {
         const willpower = system.attributes?.willpower?.value ?? 0;
         const discipline = system.attributes?.willpower?.skill?.discipline?.value ?? 0;
         system.resolve.max = willpower + discipline;
+
     }
 
     async getData(options) {
@@ -98,6 +99,8 @@ export default class InfinityCoreActorSheet extends ActorSheet {
 
         if (!this.actor.isOwner) return;
 
+        html[0].addEventListener("drop", this._onDrop.bind(this));
+
         html.find(".skill-roll").click(this._onSkillRoll.bind(this));
         html.find(".item-roll").click(this._onItemRoll.bind(this));
 
@@ -110,14 +113,14 @@ export default class InfinityCoreActorSheet extends ActorSheet {
             await this.actor.update({ [`system.${key}.value`]: newValue });
         });
 
-        html.find(`
-            input[name="system.attributes.brawn.value"],
-            input[name="system.attributes.brawn.skill.resistance.value"],
-            input[name="system.attributes.intelligence.value"],
-            input[name="system.attributes.intelligence.skill.hacking.value"],
-            input[name="system.attributes.willpower.value"],
-            input[name="system.attributes.willpower.skill.discipline.value"]
-        `).on("change", async () => {
+        html.find(
+            'input[name="system.attributes.brawn.value"],' +
+            'input[name="system.attributes.brawn.skill.resistance.value"],' +
+            'input[name="system.attributes.intelligence.value"],' +
+            'input[name="system.attributes.intelligence.skill.hacking.value"],' +
+            'input[name="system.attributes.willpower.value"],' +
+            'input[name="system.attributes.willpower.skill.discipline.value"]'
+        ).on("change", async () => {
             const brawn = parseInt(html.find('input[name="system.attributes.brawn.value"]').val()) || 0;
             const resistance = parseInt(html.find('input[name="system.attributes.brawn.skill.resistance.value"]').val()) || 0;
 
