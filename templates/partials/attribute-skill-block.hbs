@@ -1,0 +1,25 @@
+    <section class="sheet-section skills-by-attribute">
+      <h2>Skills</h2>
+      {{#each actor.system.attributes as |attribute attrKey|}}
+    <div class="attribute-skill-group">
+        <h3>{{capitalize attrKey}}</h3>
+        <div class="attribute-header">
+            <label>Attribute Value:</label>
+            <input class="attribute-value" type="number" name="system.attributes.{{attrKey}}.value" value="{{attribute.value}}" />
+        </div>
+        <div class="skill-grid">
+            {{#each attribute.skill as |skill skillKey|}}
+            <div class="skill-entry">
+                <label>{{capitalize skillKey}}</label>
+                <a class="skill-roll" data-skill="{{skillKey}}" data-attribute="{{attrKey}}">
+                    <i class="fas fa-dice-d20"></i>
+                </a>
+                <input type="number" name="system.attributes.{{attrKey}}.skill.{{skillKey}}.value" value="{{skill.value}}" />
+                <span>Focus:</span>
+                <input type="number" name="system.attributes.{{attrKey}}.skill.{{skillKey}}.focus" value="{{skill.focus}}" />
+            </div>
+            {{/each}}
+        </div>
+    </div>
+      {{/each}}
+    </section>
