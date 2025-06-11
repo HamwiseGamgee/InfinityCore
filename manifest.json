@@ -1,0 +1,11 @@
+{
+  "name": "Infinity the Roleplaying Game",
+  "manifest": "https://github.com/HamwiseGamgee/InfinityCore/blob/main/system.json",
+  "download": "https://github.com/HamwiseGamgee/InfinityCore/blob/main/infinitycore.zip",
+  "version": "0.02",
+  "compatibility": {
+    "minimum": "13.343",
+    "verified": "13.343"
+  },
+  "notes": "https://github.com/HamwiseGamgee/InfinityCore/blob/main/README.md"
+}
