@@ -1,36 +1,46 @@
+import InfinityCoreItem from "./module/apps/item.js";
 import InfinityCoreItemSheet from "./module/sheets/infinitycore-item-sheet.js";
 import InfinityCoreActorSheet from "./module/sheets/infinitycore-actor-sheet.js";
 import { registerHandlebarsHelpers } from "./module/handlebars-helpers.js";
-import itemRoll from "./module/apps/itemroll.js";
 
-
-
-Hooks.once("init", function () {
+Hooks.once("init", async function () {
     console.log("InfinityCore | Initializing system");
 
     registerHandlebarsHelpers();
 
-    // Unregister the global ItemSheet class (not from v1 API)
-    Items.unregisterSheet("core", ItemSheet);
+    const partials = ["attribute-skill-block", "item-reference-block"];
+    for (const name of partials) {
+        const path = `systems/infinitycore/templates/partials/${name}.hbs`;
+        const content = await fetch(path).then(r => r.text());
+        Handlebars.registerPartial(path, content);
+    }
 
-    // Register our custom sheet
+    CONFIG.Item.documentClass = InfinityCoreItem;
+
+    Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("infinitycore", InfinityCoreItemSheet, {
-        types: ["weapon"],
+        types: ["weapon", "utility", "talent"],
         makeDefault: true,
     });
 
-    // Register custom Actor sheet
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("infinitycore", InfinityCoreActorSheet, {
-        types: ["character", "geist", "npc"], // you can add more types here later
+        types: ["character", "geist", "npc"],
         makeDefault: true,
     });
 
-    // Set default item data
-    CONFIG.Item.documentClass.prototype._getInitialItemData = function () {
-        const type = this.type;
-        const template = foundry.utils.deepClone(CONFIG.Item.typeLabels[type] ?? {});
-        return mergeObject({ type }, template);
+    CONFIG.Item.typeTemplates = {
+        weapon: {
+            flatdamage: 1,
+            damagedice: 2,
+            size: 1,
+            cost: 0,
+            tariff: 0,
+            restriction: 0,
+            description: "", 
+            img: "icons/svg/item-bag.svg" // or your preferred default image
+
+        }
+
     };
 });
-

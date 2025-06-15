@@ -4,44 +4,58 @@
             <input name="name" type="text" value="{{item.name}}" placeholder="Weapon Name" />
         </h1>
     </header>
+    <div class="form-group item-img">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
+    </div>
 
     <div class="sheet-content">
-        <div class="form-group">
-            <label>Flat Damage</label>
-            <input type="number" name="system.flatdamage" value="{{system.flatdamage}}" />
+
+        <!-- Damage Line -->
+        <div class="form-group damage-line flexrow">
+            <label>Damage:</label>
+            <input type="number" name="system.flatdamage" value="{{system.flatdamage}}" class="tiny-input" />
+            <span> + </span>
+            <input type="number" name="system.damagedice" value="{{system.damagedice}}" class="tiny-input" />
+            <img src="icons/svg/d20-black.svg" class="roll-damage roll-icon" title="Roll Damage" />
         </div>
 
-        <div class="form-group">
-            <label>Damage Dice</label>
-            <input type="number" name="system.damagedice" value="{{system.damagedice}}" />
-        </div>
 
+        <!-- Size -->
         <div class="form-group">
             <label>Size</label>
             <input type="number" name="system.size" value="{{system.size}}" />
         </div>
 
-        <fieldset class="traits">
-            <legend>Economics</legend>
-            <div class="form-group">
-                <label>Cost</label>
-                <input type="number" name="system.cost" value="{{system.cost}}" />
+        <!-- Economics Collapsible -->
+        <div class="economics-section">
+            <h4 class="section-header toggle-econ">Economics <i class="fas fa-caret-down"></i></h4>
+            <div class="econ-content" style="display: none;">
+                <div class="form-group econ-inputs">
+                    <label>Cost</label>
+                    <input type="number" name="system.cost" value="{{system.cost}}" class="square-input" />
+                </div>
+                <div class="form-group econ-inputs">
+                    <label>Tariff</label>
+                    <input type="number" name="system.tariff" value="{{system.tariff}}" class="square-input" />
+                </div>
+                <div class="form-group econ-inputs">
+                    <label>Restriction</label>
+                    <input type="number" name="system.restriction" value="{{system.restriction}}" class="square-input" />
+                </div>
+                <div class="form-group">
+                    <button type="button" class="purchase-button">Purchase</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Tariff</label>
-                <input type="number" name="system.tariff" value="{{system.tariff}}" />
-            </div>
-            <div class="form-group">
-                <label>Restriction</label>
-                <input type="number" name="system.restriction" value="{{system.restriction}}" />
-            </div>
-        </fieldset>
-
-        <div class="form-group roll-button">
-            <label>Roll Damage</label>
-            <button type="button" class="roll-damage" title="Roll Damage">
-                <i class="fas fa-dice-d6"></i> Roll
-            </button>
         </div>
+
+        <!-- Description Section -->
+        <div class="form-group description-block">
+            <label for="system.description">Description</label>
+            {{editor system.description target="system.description" button=true editable=editable}}
+        </div>
+
+
+
+
     </div>
 </form>

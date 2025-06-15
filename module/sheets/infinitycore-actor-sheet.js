@@ -1,6 +1,24 @@
 import SkillRoll from "../apps/skillroll.js";
 
 export default class InfinityCoreActorSheet extends ActorSheet {
+
+
+    static get defaultOptions() {
+        return foundry.utils.mergeObject(super.defaultOptions, {
+            classes: ["infinitycore", "sheet", "actor"],
+            template: "systems/infinitycore/templates/sheets/character-sheet.hbs",
+            width: 800,
+            height: 600,
+            tabs: [
+                {
+                    navSelector: ".sheet-tabs",
+                    contentSelector: ".tab-content",
+                    initial: "stats"
+                }
+            ]
+        });
+    }
+
     get template() {
         return `systems/infinitycore/templates/sheets/${this.actor.type}-sheet.hbs`;
     }
@@ -94,6 +112,34 @@ export default class InfinityCoreActorSheet extends ActorSheet {
         };
     }
 
+    async _onDrop(event) {
+        event.preventDefault();
+
+        const dataTransfer = event.dataTransfer;
+        if (!dataTransfer) return;
+
+        const data = JSON.parse(dataTransfer.getData("text/plain"));
+        if (!data || data.type !== "Item") return;
+
+        // Fetch the full item data
+        const item = await fromUuid(data.uuid);
+        if (!item) {
+            return ui.notifications.warn("Could not resolve dropped item.");
+        }
+
+        // Prevent re-adding items already embedded in an actor
+        if (item.actor) {
+            return ui.notifications.warn("This item is already owned by another actor.");
+        }
+
+        // Embed a copy of the item in the current actor
+        const created = await this.actor.createEmbeddedDocuments("Item", [item.toObject()]);
+        if (created.length) {
+            ui.notifications.info(`Added ${created[0].name} to ${this.actor.name}`);
+        }
+    }
+
+
     activateListeners(html) {
         super.activateListeners(html);
 
@@ -103,6 +149,32 @@ export default class InfinityCoreActorSheet extends ActorSheet {
 
         html.find(".skill-roll").click(this._onSkillRoll.bind(this));
         html.find(".item-roll").click(this._onItemRoll.bind(this));
+
+        html.find(".item-control").click(async (ev) => {
+            const button = ev.currentTarget;
+            const li = button.closest(".item");
+            const itemId = li?.dataset.itemId;
+            const item = this.actor.items.get(itemId);
+            if (!item) return;
+
+            const action = button.dataset.action;
+            switch (action) {
+                case "edit":
+                    item.sheet.render(true);
+                    break;
+                case "delete":
+                    await item.delete();
+                    break;
+                case "roll":
+                    if (item.roll) {
+                        item.roll(); // ? your current battle-roll logic here
+                    } else {
+                        ui.notifications.warn(`${item.name} cannot be rolled.`);
+                    }
+                    break;
+            }
+        });
+
 
         html.find(".checkbox-row input[type='checkbox']").on("click", async ev => {
             const input = ev.currentTarget;

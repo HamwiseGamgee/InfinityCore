@@ -233,11 +233,14 @@
     }
   },
 
-    "Item": {
-      "types": [ "weapon", "talent" ],
-      "templates": {
-        "itemcommon": {
-          "description": ""
+  "Item": {
+    "types": [ "weapon", "talent" ],
+    "templates": {
+      "itemcommon": {
+          "description": {
+            "type": "String",
+            "default": "",
+            "editable": true
         }
       },
       "weapon": {
@@ -248,7 +251,9 @@
         "restriction": 0,
         "cost": 0,
         "tariff": 0,
-        "description": "",
+        "templates": [ "itemcommon" ],
+
+
         "qualities": {
           "area": false,
           "aug": false,
@@ -303,3 +308,4 @@
     }
 
   }
+}
