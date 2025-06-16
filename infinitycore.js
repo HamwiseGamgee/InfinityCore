@@ -19,7 +19,7 @@ Hooks.once("init", async function () {
 
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("infinitycore", InfinityCoreItemSheet, {
-        types: ["weapon", "utility", "talent"],
+        types: ["weapon", "utility", "talent", "rule"],
         makeDefault: true,
     });
 

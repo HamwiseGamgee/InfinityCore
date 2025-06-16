@@ -8,9 +8,14 @@ export default class InfinityCoreItemSheet extends ItemSheet {
     async getData(options) {
         const context = await super.getData(options);
         context.system = this.item.system;
-        context.editable = this.isEditable ?? true; // Enables {{editor}} functionality
+        context.editable = this.isEditable;
+
+        // Enrich description for display
+        context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description || "", { async: true });
+
         return context;
     }
+
 
     activateListeners(html) {
         super.activateListeners(html);

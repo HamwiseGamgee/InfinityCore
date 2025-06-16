@@ -310,8 +310,37 @@ label {
 .description-block .flexrow {
     align-items: flex-start;
     gap: 0.5em;
+    margin-top: 1em;
+    min-height: 8em; /* ~5 lines of text */
 }
 
 .description-block .editor-content {
     flex: 1;
 }
+.editor {
+    position: relative;
+    min-height: 8em;
+}
+.editor-content {
+    min-height: 6em; /* Ensure room inside the editor */
+}
+.editor-edit {
+    position: relative; /* Ensure pencil is placed correctly */
+    top: 0.2em;
+    right: 0.2em;
+    font-size: 1.3em;
+    color: #c724f5; /* Cyberpunk purple */
+    cursor: pointer;
+    z-index: 10;
+    opacity: 1; /* Make sure it's visible */
+    text-shadow: 0 0 6px #c724f5, 0 0 12px #8c0aff;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+    display: block !important; /* Force it to show */
+    opacity: 1 !important; /* Override any fading behavior */
+    pointer-events: auto !important;
+}
+
+    .editor-edit:hover {
+        color: #ff73fa;
+        text-shadow: 0 0 8px #ff73fa, 0 0 14px #ff00e0;
+    }

@@ -234,14 +234,10 @@
   },
 
   "Item": {
-    "types": [ "weapon", "talent" ],
+    "types": [ "weapon", "talent", "rule" ],
     "templates": {
       "itemcommon": {
-          "description": {
-            "type": "String",
-            "default": "",
-            "editable": true
-        }
+        "description": ""
       },
       "weapon": {
         "attackWith": "ballistics",
@@ -304,7 +300,11 @@
       },
       "talent": {
         "prerequisite": ""
+      },
+      "rule": {
+        "templates": [ "itemcommon" ]
       }
+    
     }
 
   }

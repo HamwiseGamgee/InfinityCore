@@ -50,8 +50,11 @@
 
         <!-- Description Section -->
         <div class="form-group description-block">
-            <label for="system.description">Description</label>
-            {{editor system.description target="system.description" button=true editable=editable}}
+            <div class="description-block">
+                {{editor enrichedDescription target="system.description" button=true editable=true}}
+            </div>
+
+
         </div>
 
 

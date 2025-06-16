@@ -1,0 +1,20 @@
+<form class="item-sheet" autocomplete="off">
+    <header class="sheet-header flexrow">
+        <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+        <div class="header-details flexcol">
+            <h1 class="item-name">
+                <input name="name" type="text" value="{{item.name}}" placeholder="Item Name" />
+            </h1>
+            <div class="item-type">Rule</div>
+        </div>
+    </header>
+
+    <section class="sheet-body">
+
+        <!-- Description Section -->
+        <div class="form-group description-block">
+            <div class="description-block">
+                {{editor enrichedDescription target="system.description" button=true editable=true}}
+            </div>
+    </section>
+</form>
