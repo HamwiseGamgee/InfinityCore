@@ -20,11 +20,16 @@
         </div>
 
 
-        <!-- Size -->
-        <div class="form-group">
-            <label>Size</label>
-            <input type="number" name="system.size" value="{{system.size}}" />
-        </div>
+<div class="form-group">
+  <label for="system.attackwith">Damage Bonus</label>
+  <select name="system.attackwith">
+    <option value="">—</option>
+    <option value="brawn" {{#if (eq system.attackwith "brawn")}}selected{{/if}}>Brawn</option>
+    <option value="intellect" {{#if (eq system.attackwith "intelligence")}}selected{{/if}}>Intelligence</option>
+    <option value="willpower" {{#if (eq system.attackwith "awareness")}}selected{{/if}}>Awareness</option>
+    <option value="personality" {{#if (eq system.attackwith "personality")}}selected{{/if}}>Personality</option>
+  </select>
+</div>
 
         <!-- Economics Collapsible -->
         <div class="economics-section">
