@@ -262,13 +262,14 @@ label {
 }
 
 .item-image {
-    width: 64px;
-    height: 64px;
-    object-fit: cover;
-    border: 1px solid #555;
-    border-radius: 4px;
-    margin-right: 8px;
+  display: inline-block;
+  max-width: 100%;   /* allows small images to show native size, large images to scale down */
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain; /* fallback if size exceeds container */
 }
+
 
 /* == ITEM CONTROLS == */
 .item-controls a {

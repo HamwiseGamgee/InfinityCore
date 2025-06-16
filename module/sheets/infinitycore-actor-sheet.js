@@ -82,11 +82,26 @@ export default class InfinityCoreActorSheet extends ActorSheet {
 
     }
 
-    async getData(options) {
-        const baseData = await super.getData(options);
-        const context = await this._prepareContext(options);
-        return foundry.utils.mergeObject(baseData, context);
-    }
+async getData(options) {
+    const baseData = await super.getData(options);
+    const context = await this._prepareContext(options);
+
+    // Enrich item descriptions (especially for Quick Reference rendering)
+    context.items = await Promise.all(
+        context.items.map(async (item) => {
+            const enrichedDescription = await TextEditor.enrichHTML(item.system.description || "", {
+                async: true,
+                secrets: this.actor.isOwner,
+                rollData: this.actor.getRollData()
+            });
+            item.system.enrichedDescription = enrichedDescription;
+            return item;
+        })
+    );
+
+    return foundry.utils.mergeObject(baseData, context);
+}
+
 
     async _prepareContext(options) {
         const systemData = this.actor.system ?? {};

@@ -6,18 +6,24 @@
             <img class="item-image" src="{{item.img}}" onerror="this.src='icons/svg/item-bag.svg'" />
 
             <div class="item-summary">
-                <strong>{{item.name}}</strong> — <small>{{item.type}}</small>
-                {{#if item.system.description}}
-                <div class="item-description">{{{item.system.description}}}</div>
+                <strong>{{item.name}}</strong> <small>{{item.type}}</small>
+
+                {{#if item.system.enrichedDescription}}
+                <details class="item-description">
+                    <summary>Description</summary>
+                    <div class="editor-content">
+                        {{{item.system.enrichedDescription}}}
+                    </div>
+                </details>
                 {{/if}}
             </div>
+
             <div class="item-controls flexrow">
                 <a class="item-control" data-action="roll" title="Roll"><i class="fas fa-dice-d6"></i></a>
                 <a class="item-control" data-action="edit" title="Edit"><i class="fas fa-edit"></i></a>
                 <a class="item-control" data-action="delete" title="Delete"><i class="fas fa-trash"></i></a>
             </div>
         </li>
-
         {{/each}}
     </ul>
 </section>
