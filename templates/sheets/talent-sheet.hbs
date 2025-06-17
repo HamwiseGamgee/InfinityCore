@@ -1,23 +1,62 @@
 <form class="item-sheet" autocomplete="off">
-  <header class="sheet-header flexrow">
-    <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-    <div class="header-details flexcol">
-      <h1 class="item-name">
-        <input name="name" type="text" value="{{item.name}}" placeholder="Item Name" />
-      </h1>
-      <div class="item-type">Talent</div>
-    </div>
-  </header>
+    <header class="sheet-header flexrow">
+        <div class="flexrow align-center" style="gap: 1em; width: 100%;">
+            <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
 
-  <section class="sheet-body">
+            <div class="header-details flexcol" style="flex: 1;">
+                <div class="flexrow align-center space-between">
+                    <h1 class="item-name flexrow">
+                        <input name="name" type="text" value="{{item.name}}" placeholder="Talent Name" />
+
+                    </h1>
+
+                    <a class="sheet-lock" title="{{#if editable}}Editable{{else}}Read Only{{/if}}">
+                        <i class="fas {{#if editable}}fa-lock-open{{else}}fa-lock{{/if}}"></i>
+                    </a>
+                </div>
+
+                <div class="item-type">Talent</div>
+
+                <!-- Ranks Display -->
+                <div class="talent-ranks-section">
+                    <label>Ranks</label>
+                    <div class="flexrow align-center">
+                        {{#each (range 0 system.maxranks) as |i|}}
+                        <input type="checkbox"
+                               class="rank-box"
+                               data-index="{{i}}"
+                               {{#if (gte ../system.ranks i)}} checked{{/if}} />
+                        {{/each}}
+
+                        {{#if editable}}
+                        <div class="rank-controls">
+                            <button type="button" class="rank-adjust" data-action="decrease" title="Decrease Max Ranks"><i class="fas fa-minus"></i></button>
+                            <span class="max-ranks">{{system.maxranks}}</span>
+                            <button type="button" class="rank-adjust" data-action="increase" title="Increase Max Ranks"><i class="fas fa-plus"></i></button>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="form-group">
-      <label>Prerequisite</label>
-      <input type="text" name="system.prerequisite" value="{{item.system.prerequisite}}" />
+        <label>Prerequisite</label>
+        {{#if editable}}
+        {{editor item.system.prerequisite target="system.prerequisite" button=true editable=editable}}
+        {{else}}
+        <div class="prerequisite-display">
+            {{{enrichedPrerequisite}}}
+        </div>
+        {{/if}}
     </div>
 
+
+    <!-- Rich Text Editor -->
     <div class="form-group description-field">
-      <label>Description</label>
-      <textarea name="system.description">{{item.system.description}}</textarea>
+        <label>Description</label>
+        {{editor enrichedDescription target="system.description" button=true editable=editable}}
     </div>
-  </section>
+
 </form>

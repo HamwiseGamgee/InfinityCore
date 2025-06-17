@@ -4,7 +4,7 @@
             <input name="name" type="text" value="{{item.name}}" placeholder="Weapon Name" />
         </h1>
     </header>
-    <div class="form-group item-img">
+    <div class="item-img">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
     </div>
 
@@ -25,8 +25,8 @@
   <select name="system.attackwith">
     <option value="">—</option>
     <option value="brawn" {{#if (eq system.attackwith "brawn")}}selected{{/if}}>Brawn</option>
-    <option value="intellect" {{#if (eq system.attackwith "intelligence")}}selected{{/if}}>Intelligence</option>
-    <option value="willpower" {{#if (eq system.attackwith "awareness")}}selected{{/if}}>Awareness</option>
+    <option value="intelligence" {{#if (eq system.attackwith "intelligence")}}selected{{/if}}>Intelligence</option>
+    <option value="awareness" {{#if (eq system.attackwith "awareness")}}selected{{/if}}>Awareness</option>
     <option value="personality" {{#if (eq system.attackwith "personality")}}selected{{/if}}>Personality</option>
   </select>
 </div>

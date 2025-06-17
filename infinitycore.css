@@ -12,7 +12,9 @@ label {
 }
 
 /* == ACTOR NAME == */
-.actor-name input {
+.actor-name input,
+.item-name input {
+    flex: 1;
     font-size: 1.8rem;
     font-weight: 700;
     border: none;
@@ -20,8 +22,8 @@ label {
     background: transparent;
     color: white;
     padding: 0.2rem 0;
-    width: 100%;
 }
+
 
     .actor-name input:focus {
         outline: none;
@@ -263,8 +265,8 @@ label {
 
 .item-image {
   display: inline-block;
-  max-width: 100%;   /* allows small images to show native size, large images to scale down */
-  max-height: 100%;
+  max-width: 80px;   /* allows small images to show native size, large images to scale down */
+  max-height: 80px;
   height: auto;
   width: auto;
   object-fit: contain; /* fallback if size exceeds container */
@@ -318,13 +320,22 @@ label {
 .description-block .editor-content {
     flex: 1;
 }
-.editor {
-    position: relative;
-    min-height: 8em;
-}
+.editor,
+.editor .editor-content,
 .editor-content {
-    min-height: 6em; /* Ensure room inside the editor */
+    min-height: 10em !important; /* Force at least 2 paragraphs */
+    max-height: none; /* Prevent it from being cut short */
+    overflow-y: auto;
 }
+
+.description-block .editor,
+.description-block .editor-content,
+.form-group .editor,
+.form-group .editor-content {
+    min-height: 10em !important;
+}
+
+
 .editor-edit {
     position: relative; /* Ensure pencil is placed correctly */
     top: 0.2em;
@@ -345,3 +356,36 @@ label {
         color: #ff73fa;
         text-shadow: 0 0 8px #ff73fa, 0 0 14px #ff00e0;
     }
+.talent-ranks input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+}
+
+.talent-ranks {
+    margin-top: 0.5em;
+}
+.talent-ranks-section {
+    margin-top: 0.5em;
+}
+
+.rank-box {
+    margin-right: 0.2em;
+}
+
+.rank-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+    margin-left: 1em;
+}
+
+    .rank-controls .max-ranks {
+        min-width: 1.5em;
+        text-align: center;
+    }
+
+.sheet-lock {
+    flex: 0 0 auto;
+    margin-left: 0.5em;
+}

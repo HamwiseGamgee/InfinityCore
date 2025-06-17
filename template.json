@@ -299,7 +299,9 @@
 
       },
       "talent": {
-        "prerequisite": ""
+        "prerequisite": "",
+        "ranks": 0,
+        "maxranks": 1
       },
       "rule": {
         "templates": [ "itemcommon" ]

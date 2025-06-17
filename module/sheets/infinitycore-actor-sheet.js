@@ -189,7 +189,19 @@ async getData(options) {
                     break;
             }
         });
+        html.find('.item-control[data-action="chat"]').on("click", async (event) => {
+            event.preventDefault();
+            const li = event.currentTarget.closest(".item");
+            const itemId = li?.dataset.itemId;
+            if (!itemId) return;
 
+            const item = this.actor.items.get(itemId);
+            if (item?.postToChat) {
+                await item.postToChat();
+            } else {
+                ui.notifications.warn("That item cannot be posted to chat.");
+            }
+        });
 
         html.find(".checkbox-row input[type='checkbox']").on("click", async ev => {
             const input = ev.currentTarget;

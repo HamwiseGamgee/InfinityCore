@@ -71,6 +71,10 @@ export function registerHandlebarsHelpers() {
     Handlebars.registerHelper("get", function (obj, key) {
         return obj?.[key];
     });
+    Handlebars.registerHelper("some", function (array, type) {
+        if (!Array.isArray(array)) return false;
+        return array.some(i => i.type === type);
+    });
 
 
 }

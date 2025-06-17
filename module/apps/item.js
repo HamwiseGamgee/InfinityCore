@@ -4,56 +4,50 @@ export default class InfinityCoreItem extends Item {
     /**
      * Optional: Add item-specific roll logic
      */
-async roll() {
-    const flat = this.system.flatdamage || 0;
-    const baseDice = this.system.damagedice || 0;
+    async roll() {
+        const flat = this.system.flatdamage || 0;
+        const baseDice = this.system.damagedice || 0;
 
-    // Get actor and attack attribute
-    const actor = this.actor;
-    const attackWith = this.system.attackwith;
+        const actor = this.actor;
+        const attackWith = this.system.attackwith;
 
-    // Safely get the attribute value from the actor
-    let attributeValue = 0;
-    if (actor && attackWith && actor.system.attributes?.[attackWith]?.value) {
-        attributeValue = actor.system.attributes[attackWith].value;
-    }
+        let attributeValue = 0;
+        if (actor && attackWith && actor.system.attributes?.[attackWith]?.value) {
+            attributeValue = actor.system.attributes[attackWith].value;
+        }
 
-    // Bonus damage dice based on attribute value
-    function getBonusDamageDice(attributeValue) {
-        if (attributeValue <= 8) return 0;
-        return Math.floor((attributeValue - 7) / 2);
-    }
+        function getBonusDamageDice(attributeValue) {
+            if (attributeValue <= 8) return 0;
+            return Math.floor((attributeValue - 7) / 2);
+        }
 
-    const bonusDice = getBonusDamageDice(attributeValue);
-    const totalDice = baseDice + bonusDice;
+        const bonusDice = getBonusDamageDice(attributeValue);
+        const totalDice = baseDice + bonusDice;
 
-    // Roll damage
-    const roll = await new Roll(`${totalDice}d6`).roll({ async: true });
+        const roll = await new Roll(`${totalDice}d6`).roll({ async: true });
 
-    // Parse roll results
-    const results = roll.terms[0].results;
-    for (let r of results) {
-        r.classes = [];
-        if (r.result <= 2) r.classes.push("success-die");
-        else if (r.result === 6) r.classes.push("effect-die");
-    }
+        const results = roll.terms[0].results;
+        for (let r of results) {
+            r.classes = [];
+            if (r.result <= 2) r.classes.push("success-die");
+            else if (r.result === 6) r.classes.push("effect-die");
+        }
 
-    const successes = getSuccessesFromBattleRoll(roll);
-    const effects = getEffectsFromBattleRoll(roll);
-    const totalDamage = flat + successes;
+        const successes = getSuccessesFromBattleRoll(roll);
+        const effects = getEffectsFromBattleRoll(roll);
+        const totalDamage = flat + successes;
 
-    // Display results
-    const diceHTML = results.map(r => {
-        let cls = "d6-result";
-        if (r.result <= 2) cls += " success-die";
-        else if (r.result === 6) cls += " effect-die";
-        return `<span class="${cls}">${r.result}</span>`;
-    }).join(" ");
+        const diceHTML = results.map(r => {
+            let cls = "d6-result";
+            if (r.result <= 2) cls += " success-die";
+            else if (r.result === 6) cls += " effect-die";
+            return `<span class="${cls}">${r.result}</span>`;
+        }).join(" ");
 
-    ChatMessage.create({
-        speaker: ChatMessage.getSpeaker({ actor }),
-        rolls: [roll],
-        content: `
+        ChatMessage.create({
+            speaker: ChatMessage.getSpeaker({ actor }),
+            rolls: [roll],
+            content: `
 <div class="dice-roll">
   <div class="dice-result">
     <strong>${this.name} Damage Roll</strong><br>
@@ -66,7 +60,25 @@ async roll() {
   </div>
 </div>
 `
-    });
-}
+        });
+    }
 
+    async postToChat() {
+        const enriched = await TextEditor.enrichHTML(this.system.description || "", {
+            async: true,
+            secrets: this.isOwner
+        });
+
+        const chatData = {
+            user: game.user.id,
+            speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+            content: `
+<div class="item-chat-card">
+  <h2>${this.name}</h2>
+  ${enriched}
+</div>`
+        };
+
+        ChatMessage.create(chatData);
+    }
 }

@@ -1,13 +1,14 @@
 <section class="quick-reference">
-    <h3>Quick Reference</h3>
+    {{#if (some items "weapon")}}
+    <h3>Gear</h3>
     <ul class="quick-items">
         {{#each items as |item|}}
+        {{#if (eq item.type "weapon")}}
         <li class="item flexrow" data-item-id="{{item.id}}">
             <img class="item-image" src="{{item.img}}" onerror="this.src='icons/svg/item-bag.svg'" />
 
             <div class="item-summary">
                 <strong>{{item.name}}</strong> <small>{{item.type}}</small>
-
                 {{#if item.system.enrichedDescription}}
                 <details class="item-description">
                     <summary>Description</summary>
@@ -24,6 +25,39 @@
                 <a class="item-control" data-action="delete" title="Delete"><i class="fas fa-trash"></i></a>
             </div>
         </li>
+        {{/if}}
         {{/each}}
     </ul>
+    {{/if}}
+
+    {{#if (some items "talent")}}
+    <h3>Talents</h3>
+    <ul class="quick-items">
+        {{#each items as |item|}}
+        {{#if (eq item.type "talent")}}
+        <li class="item flexrow" data-item-id="{{item.id}}">
+            <img class="item-image" src="{{item.img}}" onerror="this.src='icons/svg/item-bag.svg'" />
+
+            <div class="item-summary">
+                <strong>{{item.name}}</strong> <small>{{item.type}}</small>
+                {{#if item.system.enrichedDescription}}
+                <details class="item-description">
+                    <summary>Description</summary>
+                    <div class="editor-content">
+                        {{{item.system.enrichedDescription}}}
+                    </div>
+                </details>
+                {{/if}}
+            </div>
+
+            <div class="item-controls flexrow">
+                <a class="item-control" data-action="chat" title="Post to Chat"><i class="fas fa-comment-alt"></i></a>
+                <a class="item-control" data-action="edit" title="Edit"><i class="fas fa-edit"></i></a>
+                <a class="item-control" data-action="delete" title="Delete"><i class="fas fa-trash"></i></a>
+            </div>
+        </li>
+        {{/if}}
+        {{/each}}
+    </ul>
+    {{/if}}
 </section>
